@@ -6,6 +6,8 @@
     </article>
 </a> */
 
+// Change for git test
+
 
 // getting the data from server with an URL
 const dataURL = 'http://localhost:3000/api/products/'; 
