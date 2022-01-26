@@ -9,6 +9,10 @@
 // Change for git test
 
 
+// second test to make it clean
+
+
+
 // getting the data from server with an URL
 const dataURL = 'http://localhost:3000/api/products/'; 
 
