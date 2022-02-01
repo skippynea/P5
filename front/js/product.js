@@ -32,4 +32,4 @@ const img = document.createElement('item__img');
 const title = document.createElement('item__content__titlePrice.title');
 const price = document.createElement('item__content__titlePrice.price');
 const description = document.createElement('item__content__description.description');
-
+}
