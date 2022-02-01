@@ -9,7 +9,7 @@ fetch(dataURL)
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
-    makeCards(data);
+    displayProduct(data);
     // this function create one card for each product
   })
   .catch((error) => console.log(error));
