@@ -22,7 +22,7 @@ fetch(dataURL)
   .then((data) => {
     console.log(data);
     makeCards(data);
-    // this function make the cards
+    // this function create one card for each product
   })
   .catch((error) => console.log(error));
 
@@ -55,6 +55,8 @@ const title = document.createElement('h3');
 const description = document.createElement('p');
 
 // add attributes setAttribute('type', button);
+
+
 // add classes - classlist.add('')
 
 // for the a href need to use query parameters to link
