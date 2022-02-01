@@ -55,7 +55,7 @@ const title = document.createElement('h3');
 const description = document.createElement('p');
 
 // add attributes setAttribute('type', button);
-
+setAttribute('type', button);
 
 // add classes - classlist.add('')
 
