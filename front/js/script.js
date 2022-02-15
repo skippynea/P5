@@ -29,6 +29,7 @@ function makeCards(dataArr) {
     const items = document.getElementById('items');
     
     // Boucle for iteration to make a card out of each data object
+    // put the length of the array in variable 'lenght'
     const length = dataArr.length
     
     for(let i = 0; i < length; i++) {
@@ -42,9 +43,9 @@ function makeCards(dataArr) {
 function makeCard(productObj) {
 // create the elements with all parameters for each product
 const card = document.createElement('a');
-const article = document.createElement('article');
-const img = document.createElement('img');
-const title = document.createElement('h3');
+const cardInfo = document.createElement('article');
+const cardImage = document.createElement('img');
+const name = document.createElement('h3');
 const description = document.createElement('p');
 
 // add attributes setAttribute('type', button);
@@ -55,31 +56,28 @@ const description = document.createElement('p');
 // for the a href need to use query parameters to link
 // each product to its specific id for ONE product page
 
-const productURL = './product.html?id=' + productObj._id;
-card.setAttribute('href', productURL);
+const productUrl = './product.html?id=' + productObj._id;
+const imageUrl = productObj.imageUrl;
+
+card.setAttribute('href', productUrl);
 card.classList.add('items');
 
-img.setAttribute('src', productObj.imageUrl);
-img.setAttribute('alt', productObj.altTxt);
+cardImage.setAttribute('src', imageUrl);
+cardImage.setAttribute('alt', productObj.altTxt);
 
-title.innerHTML = productObj.name;
-title.classList.add('productName');
+name.innerHTML = productObj.name;
+name.classList.add('productName');
 
 description.classList.add('productDescription');
 description.innerHTML = productObj.description;
 
-/* price.classList.add('productPrice');
-price.innerHTML = productObj.price;
- */
+// append tags to cardInfo
+cardInfo.appendChild(cardImage);
+cardInfo.appendChild(name);
+cardInfo.appendChild(description);
 
-
-// append tags to article
-article.appendChild(img);
-article.appendChild(title);
-article.appendChild(description);
-
-// append article to a tag
-card.appendChild(article);
+// append cardInfo to a tag
+card.appendChild(cardInfo);
 
 return card;
 }
