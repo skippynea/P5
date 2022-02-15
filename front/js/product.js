@@ -19,10 +19,10 @@ function getProduct() {
       return response.json();
 
     })
-    .catch((error) => console.log(error));
     // send an error message if something is wrong
-  
-
+    .catch((error) => {
+      console.log(error);
+    })
     // calling the function to display the product on page
     .then(function (productIdURL) {
       console.log(productIdURL);
@@ -30,14 +30,14 @@ function getProduct() {
     }
   
 
-      // stash a reference to container on the page
-      const item = document.getElementById('item');
+    // stash a reference to container on the page
+    const item = document.getElementById('item');
 }
 
 // "Inserting a product and its details into a product page"
 
 // Using the function to create a page with the product
-function displayProduct() {
+function displayProduct(item) {
 // create the elements with all parameters for the product
 const productCardImage = document.createElement('item__img');
 const productCardName = document.createElement('item__content__titlePrice.title');
