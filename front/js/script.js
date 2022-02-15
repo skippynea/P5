@@ -6,13 +6,6 @@
     </article>
 </a> */
 
-// Change for git test
-
-
-// second test to make it clean
-
-
-
 // getting the data from server with an URL
 const dataURL = 'http://localhost:3000/api/products/'; 
 
@@ -55,7 +48,7 @@ const title = document.createElement('h3');
 const description = document.createElement('p');
 
 // add attributes setAttribute('type', button);
-setAttribute('type', button);
+// setAttribute('type', button);
 
 // add classes - classlist.add('')
 
@@ -72,9 +65,18 @@ img.setAttribute('alt', productObj.altTxt);
 title.innerHTML = productObj.name;
 title.classList.add('productName');
 
+description.classList.add('productDescription');
+description.innerHTML = productObj.description;
+
+/* price.classList.add('productPrice');
+price.innerHTML = productObj.price;
+ */
+
+
 // append tags to article
 article.appendChild(img);
 article.appendChild(title);
+article.appendChild(description);
 
 // append article to a tag
 card.appendChild(article);
