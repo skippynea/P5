@@ -11,7 +11,7 @@ let objectId = params.get("id");
 function getProduct() {
 
   // getting the 'id' of THE only product needed from server with the URL
-  const productIdURL = 'http://localhost:3000/api/products/{id}'; 
+  const productIdURL = 'http://localhost:3000/api/products/{product-ID}'; 
 
   // fetch is calling the server to get the URL of the Product's Id
   fetch(productIdURL)
