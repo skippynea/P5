@@ -22,8 +22,6 @@ fetch(dataURL)
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
 
-
-
   // Creating a function to make all the cards to displays the products
 
 function displayProduct(dataArr) {
