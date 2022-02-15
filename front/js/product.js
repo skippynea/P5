@@ -1,16 +1,11 @@
-// Page to display each product (one page per product)
+// "The product Page" : Page to display each product (one page per product)
+
+// "Collecting the ID of a product you wish to display"
 
 // find the 'id' of the object to display
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
 
-
-
-
-
-
-  
-  
 // creating a function to get only THE product to display
 
 function getProduct() {
@@ -18,22 +13,22 @@ function getProduct() {
   // getting the 'id' of THE only product needed from server with the URL
   const productIdURL = 'http://localhost:3000/api/products/${id}'; 
 
-  // fetch is calling the server to get 
+  // fetch is calling the server to get the URL of the Product's Id
   fetch(productIdURL)
-    .then((response) => response.json())
+    .then(function (response) => response.json())
     .then((productIdURL) => {
       console.log(productIdURL);
       displayProduct(productIdURL);
-      // this function create one card for each product
     })
     .catch((error) => console.log(error));
+  // send an error message if something is wrong
 
-    // send an error message if something is wrong
+
       // stash a reference to container on the page
       const item = document.getElementById('item');
 }
 
-
+// "Inserting a product and its details into a product page"
 
 // Using the function to create a page with the product
 function displayProduct(productPage) {
@@ -44,7 +39,13 @@ const productCardPrice = document.createElement('item__content__titlePrice.price
 const productCardDescription = document.createElement('item__content__description.description');
 }
 
+// "Adding products to the cart"
 
+// creating the 'adding to cart' fonction when click the 'add' button
+function addToCart() {
+
+
+}
 
 
 // Template in HTML :
