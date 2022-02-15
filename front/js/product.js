@@ -2,7 +2,7 @@
 
 // "Collecting the ID of a product you wish to display"
 
-// find the 'id' of the object to display
+// find the 'id' of the object to display with params
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
 
@@ -15,14 +15,20 @@ function getProduct() {
 
   // fetch is calling the server to get the URL of the Product's Id
   fetch(productIdURL)
-    .then(function (response) => response.json())
-    .then((productIdURL) => {
-      console.log(productIdURL);
-      displayProduct(productIdURL);
+    .then(function (response) {
+      return response.json();
+
     })
     .catch((error) => console.log(error));
-  // send an error message if something is wrong
+    // send an error message if something is wrong
+  
 
+    // calling the function to display the product on page
+    .then(function (productIdURL) {
+      console.log(productIdURL);
+      displayProduct(productIdURL);
+    }
+  
 
       // stash a reference to container on the page
       const item = document.getElementById('item');
@@ -31,7 +37,7 @@ function getProduct() {
 // "Inserting a product and its details into a product page"
 
 // Using the function to create a page with the product
-function displayProduct(productPage) {
+function displayProduct() {
 // create the elements with all parameters for the product
 const productCardImage = document.createElement('item__img');
 const productCardName = document.createElement('item__content__titlePrice.title');
