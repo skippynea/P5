@@ -1,6 +1,9 @@
-// "The product Page" : Page to display each product (one page per product)
+// "The product Page" : Page to display each product (one page for one product)
 
 // "Collecting the ID of a product you wish to display"
+
+// Stocking the base of the URL in a constante
+const baseURL = 'http://localhost:3000/api/products' 
 
 // find the 'id' of the object to display with params
 let params = new URL(document.location).searchParams;
@@ -11,23 +14,26 @@ let objectId = params.get("id");
 function getProduct() {
 
   // getting the 'id' of THE only product needed from server with the URL
-  const productIdURL = 'http://localhost:3000/api/products/{product-ID}'; 
-
+  let productIdURL = baseURL + objectId;
+  console.log(productIdURL);
+  
   // fetch is calling the server to get the URL of the Product's Id
   fetch(productIdURL)
     .then(function (response) {
       return response.json();
 
     })
+    .then(function (productIdURL) {
+          console.log(productIdURL);
+          displayProduct(productIdURL);
+    })
+    
     // send an error message if something is wrong
     .catch((error) => {
       console.log(error);
     })
     // calling the function to display the product on page
-    .then(function (productIdURL) {
-      console.log(productIdURL);
-      displayProduct(productIdURL);
-    }
+    
   
 
     // stash a reference to container on the page
@@ -56,7 +62,7 @@ function addToCart() {
 
 // Template in HTML :
 
-{/* 
+/* 
   
     <section class="item">
     <article>
@@ -99,6 +105,6 @@ function addToCart() {
     </article>
     </section> 
 
-*/}
+*/
 
 // End of template HTML //
