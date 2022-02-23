@@ -3,11 +3,14 @@
 // "Collecting the ID of a product you wish to display"
 
 // Stocking the base of the URL in a constante
-const baseURL = 'http://localhost:3000/api/products' 
+const baseURL = 'http://localhost:3000/api/products/' 
 
 // find the 'id' of the object to display with params
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
+
+// Execute the function to get the product ID and display it on product page
+getProduct();
 
 // creating a function to get only THE product to display
 
@@ -20,35 +23,39 @@ function getProduct() {
   // fetch is calling the server to get the URL of the Product's Id
   fetch(productIdURL)
     .then(function (response) {
+      console.log('infetch');
+      displayProduct();
       return response.json();
-
     })
-    .then(function (productIdURL) {
-          console.log(productIdURL);
-          displayProduct(productIdURL);
-    })
+    // calling the function to display the product on page
+    
     
     // send an error message if something is wrong
     .catch((error) => {
       console.log(error);
     })
-    // calling the function to display the product on page
     
-  
+  ;
 
-    // stash a reference to container on the page
-    const item = document.getElementById('item');
+  // stash a reference to container on the page
+  const item = document.getElementById('item');
+
 }
 
 // "Inserting a product and its details into a product page"
 
 // Using the function to create a page with the product
-function displayProduct(item) {
-// create the elements with all parameters for the product
-const productCardImage = document.createElement('item__img');
-const productCardName = document.createElement('item__content__titlePrice.title');
-const productCardPrice = document.createElement('item__content__titlePrice.price');
-const productCardDescription = document.createElement('item__content__description.description');
+function displayProduct() {
+  // create the elements with all parameters for the product
+  document.querySelector('#item').innerHTML = "<img src={$imageUrl} alt='Photographie d'un canapé'>";
+  /* const productCardName = document.createElement('item__content__titlePrice.title');
+  const productCardPrice = document.createElement('item__content__titlePrice.price');
+  const productCardDescription = document.createElement('item__content__description.description'); */
+  
+  console.log(productCardName);
+
+
+
 }
 
 // "Adding products to the cart"
