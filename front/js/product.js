@@ -53,7 +53,7 @@ const productDescription = document.querySelector(".item__content__description #
 function displayProduct(dataObject) {
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
-  productImg.innerHTML = dataObject.imageUrl;
+  productImg.src = dataObject.imageUrl;
   productDescription.innerText = dataObject.description;
 
 }
