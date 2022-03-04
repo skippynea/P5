@@ -9,10 +9,8 @@ const baseURL = 'http://localhost:3000/api/products/'
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
 
-// Constante declaration and stocked the value
-const productImage = document.querySelector(".item__img");
-const productName = document.querySelector(".item__content__titlePrice title");
-const productPrice = document.querySelector(".item__content__titlePrice price");
+
+
 // Execute the function to get the product ID and display it on product page
 getProduct();
 
@@ -28,48 +26,35 @@ function getProduct() {
   
   // fetch is calling the server to get the URL of the Product's Id and display product details
   fetch(productIdURL)
-    .then(function (response) {
+    .then((response)=> {
       console.log('infetch');
       return response.json();
     })
-    .then(function (response){
+    .then((data)=> {
     // calling the function to display the product on page
-    displayProduct(item);
+    console.log(data);
+    displayProduct(data);
     })
 
     // send an error message if something is wrong
-    .catch((error) => {
-      console.log(error);
-    })
-    
+    .catch((error) => {console.log(error);})
   ;
-
-  
-
 }
 
 // #2 : "Inserting a product and its details into a product page"
 
+// Constante declaration and stocked the value in the variable
+const productImg = document.querySelector(".item__img");
+const productName = document.querySelector(".item__content__titlePrice #title");
+const productPrice = document.querySelector(".item__content__titlePrice #price");
+const productDescription = document.querySelector(".item__content__description #description");
+
 // Using the function to create a page with the product
-function displayProduct() {
-  // create the elements with all parameters for the product
-  // const productImage = document.getElementsByClassName('item item__img')
-  console.log(productImage);
-  productImage.innerHTML = ${image};
-  console.log(productName);
-  productName.innerHTML = item;
-  console.log(productPrice);
-  productPrice.innerHTML = item;
-  // 
-
-
-  /* const productCardName = document.createElement('item__content__titlePrice.title');
-  const productCardPrice = document.createElement('item__content__titlePrice.price');
-  const productCardDescription = document.createElement('item__content__description.description'); */
-  //console.log(productCardName);
-  
-
-
+function displayProduct(dataObject) {
+  productPrice.innerText = dataObject.price;
+  productName.innerText = dataObject.name;
+  productImg.innerHTML = dataObject.imageUrl;
+  productDescription.innerText = dataObject.description;
 
 }
 
@@ -77,7 +62,6 @@ function displayProduct() {
 
 // creating the 'adding to cart' fonction when click the 'add' button
 function addToCart() {
-
 
 }
 
