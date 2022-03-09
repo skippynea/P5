@@ -45,6 +45,7 @@ function getProduct() {
 
 // Constante declaration and stocked the value in the variable
 const productImg = document.querySelector(".item__img");
+//const productImg = document.querySelector(".item__img img");
 const productName = document.querySelector(".item__content__titlePrice #title");
 const productPrice = document.querySelector(".item__content__titlePrice #price");
 const productDescription = document.querySelector(".item__content__description #description");
@@ -53,9 +54,25 @@ const productDescription = document.querySelector(".item__content__description #
 function displayProduct(dataObject) {
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
-  productImg.src = dataObject.imageUrl;
   productDescription.innerText = dataObject.description;
+  // product's image displayed from url
+  const img = document.createElement ('img');
+  //img = dataObject.imageUrl;
+  //document.body.appendChild(dataObject.imageUrl);
+  
+  console.log(dataObject.imageUrl);
+  img.src = dataObject.imageUrl;
+  img.alt = dataObject.altTxt;
+  // productImg.src = dataObject.imageUrl;
+  // productImg.alt = dataObject.altTxt;
+  console.log(productImg);
+  // displayImage (img);  //img.src = productImg ;
+  
+  productImg.appendChild(img);
+}
 
+function displayImage (img) {
+  productImg.innerHTML = img;
 }
 
 // #3 : "Adding products to the cart"
