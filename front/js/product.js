@@ -24,7 +24,8 @@ function getProduct() {
   console.log(productIdURL);
   // stash a reference to container on the page
   const item = document.getElementById('item');
-  
+  console.log(item);
+
   // fetch is calling the server to get the URL of the Product's Id and display product details
   fetch(productIdURL)
     .then((response)=> {
@@ -45,16 +46,18 @@ function getProduct() {
 // #2 : "Inserting a product and its details into a product page"
 //Milestone #6: "Inserting a product and its details into a product page"
  
-// Constante declaration and stocked the value in the variable
-const productImg = document.querySelector(".item__img");
-//const productImg = document.querySelector(".item__img img");
-const productName = document.querySelector(".item__content__titlePrice #title");
-const productPrice = document.querySelector(".item__content__titlePrice #price");
-const productDescription = document.querySelector(".item__content__description #description");
-const productObject = document.querySelector(".item__content__settings__color .color-select #colors")
+
 
 // Using the function to create a page with the product
 function displayProduct(dataObject) {
+    // Constante declaration and stocked the value in the variable
+    const productImg = document.querySelector(".item__img");
+    //const productImg = document.querySelector(".item__img img");
+    const productName = document.getElementById("#title");
+    const productPrice = document.getElementById("#price");
+    const productDescription = document.getElementById("#description");
+    const pullDown = document.getElementById("#colors");
+    
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
   productDescription.innerText = dataObject.description;
@@ -72,26 +75,29 @@ function displayProduct(dataObject) {
   // displayImage (img);  //img.src = productImg ;
   
   productImg.appendChild(img);
+
+  // Add option tags to pullDown menu
+  makePullDown (dataObject.colors);
+
+
+
+
+  // Getting the colors' values of "productObject" from fetch call to insert in menu
+
+  // productObject.innerText = dataObject.description;
+
+
 }
 
 function displayImage (img) {
   productImg.innerHTML = img;
 }
 
-// Getting the colors' values of "productObject" from fetch call to insert in menu
-
-productObject.innerText = dataObject.description;
 
 // Pulldown menu for choosing the color  (function from Tim => to adapt)
 
-makePulldown(productObject.colors);
-
 function makePulldown(optionArr) {
-  // three options to get the element
-  const pullDown = document.getElementById('options');
-  const anotherWay = document.querySelector('#options');
-  const thirdWay = document.getElementsByTagName('select')[0];
-  
+
   // addEventListener to handle pulldown
   pullDown.addEventListener('change', handlePullDown)
   
