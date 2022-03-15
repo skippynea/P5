@@ -1,6 +1,7 @@
 // "The product Page" : Page to display each product (one page for one product)
 
 // #1: "Collecting the ID of a product you wish to display"
+// Milestone #5: "Collecting the ID of a product you wish to display"
 
 // Stocking the base of the URL in a constante
 const baseURL = 'http://localhost:3000/api/products/' 
@@ -42,7 +43,8 @@ function getProduct() {
 }
 
 // #2 : "Inserting a product and its details into a product page"
-
+//Milestone #6: "Inserting a product and its details into a product page"
+ 
 // Constante declaration and stocked the value in the variable
 const productImg = document.querySelector(".item__img");
 //const productImg = document.querySelector(".item__img img");
@@ -75,9 +77,52 @@ function displayImage (img) {
   productImg.innerHTML = img;
 }
 
+
+
+// Pulldown menu for choosing the color
+
+makePulldown(productObj.colors);
+
+function makePulldown(optionArr) {
+  // three options to get the element
+  const pullDown = document.getElementById('options');
+  const anotherWay = document.querySelector('#options');
+  const thirdWay = document.getElementsByTagName('select')[0];
+  
+  // addEventListener to handle pulldown
+  pullDown.addEventListener('change', handlePullDown)
+  
+  const length = optionArr.length;
+  
+  for(let i=0; i<length; i++) {
+    // create element
+    const option = document.createElement('option');
+    
+    // add value attribute
+    console.log(optionArr[i]);
+    option.value = optionArr[i]; // adds the color to the attribute
+    option.innerText = optionArr[i]; // adds content to option tag
+    
+    // append to select
+    pullDown.appendChild(option);
+  }
+}
+
+
 // #3 : "Adding products to the cart"
+// Milestone #7: "Adding products to the cart"
+
+
+
+
+
+
+
+
+
 
 // creating the 'adding to cart' fonction when click the 'add' button
+
 function addToCart() {
 
 }
