@@ -78,11 +78,11 @@ function displayImage (img) {
   productImg.innerHTML = img;
 }
 
-// initialize productObject from fetch call
+// Getting the colors' values of "productObject" from fetch call to insert in menu
 
+productObject.innerText = dataObject.description;
 
-
-// Pulldown menu for choosing the color
+// Pulldown menu for choosing the color  (function from Tim => to adapt)
 
 makePulldown(productObject.colors);
 
@@ -114,14 +114,6 @@ function makePulldown(optionArr) {
 
 // #3 : "Adding products to the cart"
 // Milestone #7: "Adding products to the cart"
-
-
-
-
-
-
-
-
 
 
 // creating the 'adding to cart' fonction when click the 'add' button
