@@ -51,6 +51,7 @@ const productImg = document.querySelector(".item__img");
 const productName = document.querySelector(".item__content__titlePrice #title");
 const productPrice = document.querySelector(".item__content__titlePrice #price");
 const productDescription = document.querySelector(".item__content__description #description");
+const productObject = document.querySelector(".item__content__settings__color .color-select #colors")
 
 // Using the function to create a page with the product
 function displayProduct(dataObject) {
@@ -77,11 +78,13 @@ function displayImage (img) {
   productImg.innerHTML = img;
 }
 
+// initialize productObject from fetch call
+
 
 
 // Pulldown menu for choosing the color
 
-makePulldown(productObj.colors);
+makePulldown(productObject.colors);
 
 function makePulldown(optionArr) {
   // three options to get the element
