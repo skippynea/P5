@@ -2,6 +2,38 @@
 // record all the parameters of each product 
 // when user click on button 'add to cart'
 
+// Milestone #8: "Displaying a recap table of purchases on the cart page"
+manageCart();
+
+function manageCart() {
+  displayCart();
+  totalCart();
+  clearCart ();
+  confirmCart ();
+}
+
+function displayCart() {
+// displaying the object's selection in cart
+
+
+}
+
+function totalCart() {
+// counting the total number and total price of selection in the cart
+
+}
+
+function clearCart() {
+// to clear the cart : reset number and selection
+
+
+}
+
+function confirmCart() {
+  // to confirm selection and send the command to server
+
+}
+
 /* 
             <section id="cart__items">
              <article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
