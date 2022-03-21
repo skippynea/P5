@@ -96,7 +96,7 @@ function displayImage (img) {
 
 // Pulldown menu for choosing the color  (function from Tim => to adapt)
 
-function makePulldown(optionArr) {
+function makePullDown(optionArr) {
 
   // addEventListener to handle pulldown
   pullDown.addEventListener('change', handlePullDown)
