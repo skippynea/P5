@@ -56,7 +56,7 @@ function displayProduct(dataObject) {
     const productName = document.getElementById("#title");
     const productPrice = document.getElementById("#price");
     const productDescription = document.getElementById("#description");
-    const pullDown = document.getElementById("#colors");
+    const pullDownArr = document.getElementById("#colors");
     
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
@@ -93,25 +93,30 @@ function displayImage (img) {
 
 // Pulldown menu for choosing the color
 
-function makePullDown(optionArr) {
+function makePullDown(pullDownArr) {
 
   // addEventListener to handle pulldown
-  pullDown.addEventListener('change', handlePullDown)
+  pullDownArr.addEventListener('colors', handlePullDown)
   
-  const length = optionArr.length;
+  const length = pullDownArr.length;
   
   for(let i=0; i<length; i++) {
     // create element
     const option = document.createElement('option');
     
     // add value attribute
-    console.log(optionArr[i]);
-    option.value = optionArr[i]; // adds the color to the attribute
-    option.innerText = optionArr[i]; // adds content to option tag
+    console.log(pullDownArr[i]);
+    option.value = pullDownArr[i]; // adds the color to the attribute
+    option.innerText = pullDownArr[i]; // adds content to option tag
     
     // append to select
-    pullDown.appendChild(option);
+    pullDownArr.appendChild(option);
   }
+}
+
+function handlePullDown(e) {
+  dataObject.option = e.target.value;
+  console.log(dataObject);
 }
 
 
