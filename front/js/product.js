@@ -79,9 +79,6 @@ function displayProduct(dataObject) {
   // Add option tags to pullDown menu
   makePullDown (dataObject.colors);
 
-
-
-
   // Getting the colors' values of "productObject" from fetch call to insert in menu
 
   // productObject.innerText = dataObject.description;
@@ -94,7 +91,7 @@ function displayImage (img) {
 }
 
 
-// Pulldown menu for choosing the color  (function from Tim => to adapt)
+// Pulldown menu for choosing the color
 
 function makePullDown(optionArr) {
 
