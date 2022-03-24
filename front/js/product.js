@@ -22,9 +22,16 @@ function getProduct() {
   // getting the 'id' of THE only product needed from server with the URL
   let productIdURL = baseURL + objectId;
   console.log(productIdURL);
-  // stash a reference to container on the page
-  const item = document.getElementById('item');
-  console.log(item);
+ 
+ 
+ // declaring the variable to store the values selected
+  const productObj = {
+    color : '',
+    name : '',
+    price : '',
+    quantity :'',
+    _id: id,
+  }
 
   // fetch is calling the server to get the URL of the Product's Id and display product details
   fetch(productIdURL)
@@ -53,10 +60,10 @@ function displayProduct(dataObject) {
     // Constante declaration and stocked the value in the variable
     const productImg = document.querySelector(".item__img");
     //const productImg = document.querySelector(".item__img img");
-    const productName = document.getElementById("#title");
-    const productPrice = document.getElementById("#price");
-    const productDescription = document.getElementById("#description");
-    const pullDownArr = document.getElementById("#colors");
+    const productName = document.getElementById("title");
+    const productPrice = document.getElementById("price");
+    const productDescription = document.getElementById("description");
+    const pullDownArr = document.getElementById("colors");
     
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
@@ -94,9 +101,10 @@ function displayImage (img) {
 // Pulldown menu for choosing the color
 
 function makePullDown(pullDownArr) {
-
+  // create variable 
+  const select = document.getElementById('colors');
   // addEventListener to handle pulldown
-  pullDownArr.addEventListener('colors', handlePullDown)
+  select.addEventListener('change', handlePullDown);
   
   const length = pullDownArr.length;
   
@@ -110,7 +118,7 @@ function makePullDown(pullDownArr) {
     option.innerText = pullDownArr[i]; // adds content to option tag
     
     // append to select
-    pullDownArr.appendChild(option);
+    select.appendChild(option);
   }
 }
 
