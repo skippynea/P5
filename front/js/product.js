@@ -100,6 +100,7 @@ function displayImage (img) {
   productImg.innerHTML = img;
 }
 
+// User select the product's color in pull down menu :
 
 // Pulldown menu for choosing the color
 
@@ -151,6 +152,36 @@ let cartArr = JSON.parse(cartStr);
 // mock data to test makePulldown function
 const InCartArr = [];
 
+
+// creating the Fetch :
+function doTheFetch(url) {
+  // get references to elements that you need
+  
+  // run the fetch - async
+  // to call functions that build page, add listeners, etc.
+  fetch(url)
+    .then(res => res.json())
+    .then(data => {
+      color
+      name
+      price
+      quantity
+      id
+      // title - get reference
+      // img and alt - get reference
+      // price - get reference
+      // input for qty - get reference
+      qty.addEventListener('click', changeQty); // add listener to qty input
+      makePulldown(pullDownArr);
+      addAdd2CartListener()
+    })
+    .catch(err => console.log(err));
+    
+
+}
+
+
+
 // creating the 'adding to cart' fonction when click the 'add' button
 
 function add2Cart(prodObj) {
@@ -170,7 +201,7 @@ function addAdd2CartListener(){
 }
 
 // calling the fetch :
-doTheFetch('dddd');
+doTheFetch(productIdURL);
 
 
 
