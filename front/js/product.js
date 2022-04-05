@@ -135,13 +135,12 @@ function handlePullDown(e) {
 // #3 : "Adding products to the cart"
 // Milestone #7: "Adding products to the cart"
 
-// declaring the variable to store the values selected
+// initialization of the variable to store the object's values
 const prodObj = {
-  color : document.getElementById("colors"),
-  name : document.getElementById("title"),
-  price : document.getElementById("price"),
-  quantity : document.getElementById("quantity"),
-  id: objectId,
+  id: '',
+  color : '',
+  name : '',
+  quantity : 1
 }
 // managing local storage :
 // get cart string from local storage
@@ -162,24 +161,23 @@ function doTheFetch(url) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      color
-      name
-      price
-      quantity
-      id
+      id;
+      color;
+      name;
+      price;
+      quantity;
       // title - get reference
       // img and alt - get reference
       // price - get reference
       // input for qty - get reference
       qty.addEventListener('click', changeQty); // add listener to qty input
       makePulldown(pullDownArr);
-      addAdd2CartListener()
+      addAdd2CartListener();
     })
     .catch(err => console.log(err));
     
 
 }
-
 
 
 // creating the 'adding to cart' fonction when click the 'add' button
@@ -201,7 +199,7 @@ function addAdd2CartListener(){
 }
 
 // calling the fetch :
-doTheFetch(productIdURL);
+doTheFetch(obj);
 
 
 
