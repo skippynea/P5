@@ -26,11 +26,11 @@ function getProduct() {
  
  // declaring the variable to store the values selected
   const productObj = {
-    color : '',
-    name : '',
-    price : '',
-    quantity :'',
-    _id: id,
+    color : document.getElementById("colors"),
+    name : document.getElementById("title"),
+    price : document.getElementById("price"),
+    quantity : document.getElementById("quantity"),
+    id: objectId,
   }
 
   // fetch is calling the server to get the URL of the Product's Id and display product details
@@ -86,6 +86,9 @@ function displayProduct(dataObject) {
   // Add option tags to pullDown menu
   makePullDown (dataObject.colors);
 
+  //Adding the product to cart
+  //addToCart(productObj);
+  //console.log(productObj);
   // Getting the colors' values of "productObject" from fetch call to insert in menu
 
   // productObject.innerText = dataObject.description;
@@ -118,25 +121,57 @@ function makePullDown(pullDownArr) {
     option.innerText = pullDownArr[i]; // adds content to option tag
     
     // append to select
+    console.log(option)
     select.appendChild(option);
   }
 }
 
 function handlePullDown(e) {
-  dataObject.option = e.target.value;
-  console.log(dataObject);
+  prodObj.option = e.target.value;
 }
 
 
 // #3 : "Adding products to the cart"
 // Milestone #7: "Adding products to the cart"
 
+// declaring the variable to store the values selected
+const prodObj = {
+  color : document.getElementById("colors"),
+  name : document.getElementById("title"),
+  price : document.getElementById("price"),
+  quantity : document.getElementById("quantity"),
+  id: objectId,
+}
+// managing local storage :
+// get cart string from local storage
+let cartStr = localStorage.getItem('cart') || '[]';
+// parse into datastructure - array of obj
+let cartArr = JSON.parse(cartStr);
+
+// mock data to test makePulldown function
+const InCartArr = [];
 
 // creating the 'adding to cart' fonction when click the 'add' button
 
-function addToCart() {
-
+function add2Cart(prodObj) {
+  const add2CartBtn = document.getElementById(addToCart);
+  add2CartBtn.addEventListener("click", () => { 
+    // Testing the quantity selected by user
+    if (quantity.value > 0 && quantity.value < 101);
+    // create the array to hold all the products selected in cart
+    let inCartArr = [];
+   }, false);
 }
+
+
+function addAdd2CartListener(){
+  const add2CartBtn = document.getElementById('addToCart');
+  add2CartBtn.addEventListener('click', add2Cart);
+}
+
+// calling the fetch :
+doTheFetch('dddd');
+
 
 
 // Template in HTML :
