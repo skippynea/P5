@@ -10,7 +10,9 @@ const baseURL = 'http://localhost:3000/api/products/'
 let params = new URL(document.location).searchParams;
 let objectId = params.get("id");
 
-
+// getting the 'id' of THE only product needed from server with the URL
+let productIdURL = baseURL + objectId;
+console.log(productIdURL);
 
 // Execute the function to get the product ID and display it on product page
 getProduct();
@@ -19,19 +21,8 @@ getProduct();
 
 function getProduct() {
 
-  // getting the 'id' of THE only product needed from server with the URL
-  let productIdURL = baseURL + objectId;
-  console.log(productIdURL);
+  
  
- 
- // declaring the variable to store the values selected
-  const productObj = {
-    color : document.getElementById("colors"),
-    name : document.getElementById("title"),
-    price : document.getElementById("price"),
-    quantity : document.getElementById("quantity"),
-    id: objectId,
-  }
 
   // fetch is calling the server to get the URL of the Product's Id and display product details
   fetch(productIdURL)
@@ -163,7 +154,6 @@ function doTheFetch(url) {
     .then(data => {
       initProdObj(data); // initialization
       makeProdCard(data) // creating the card of the product
-      qty.addEventListener('click', changeQty); // add listener to qty input
       makePulldown(pullDownArr);
       add2CartListener();
     })
@@ -171,11 +161,10 @@ function doTheFetch(url) {
     
 
 }
-// initialize the object parameters
+// initialize the product's object parameters
 function initProdObj(obj) {
   prodObj.id = obj.id;
   prodObj.name = obj.name;
-  prodObj.color = obj.color;
   prodObj.imgUrL = obj.imgUrL;
   prodObj.price = obj.price;
 }
@@ -195,19 +184,19 @@ function add2Cart(prodObj) {
 
 function add2CartListener(){
   const add2CartBtn = document.getElementById('addToCart');
-  add2CartBtn.addEventListener('click', add2Cart);
+  add2CartBtn.addEventListener('click', addToCart);
 }
 
 function makeProdCard(obj) {
   // do things with obj property values
   
   // add listener to qty input
-  const qty = document.getElementById('qty');
+  const qty = document.getElementById('quantity');
   qty.addEventListener('change', updateQty);
   
   // add listener to add 2 cart button
-  const addBtn = document.getElementById('add');
-  addBtn.addEventListener('click', add2Cart);
+  const addBtn = document.getElementById('addToCart');
+  addBtn.addEventListener('click', addToCart);
   
   
   // create pulldown options & add listener
@@ -215,8 +204,12 @@ function makeProdCard(obj) {
   
 }
 
+function updateQty (event){
+  prodObj.quantity = event.target.value;
+  console.log(prodObj);
+}
 // calling the fetch :
-doTheFetch(obj);
+doTheFetch(productIdURL);
 
 
 
