@@ -172,7 +172,7 @@ function doTheFetch(url) {
       // input for qty - get reference
       qty.addEventListener('click', changeQty); // add listener to qty input
       makePulldown(pullDownArr);
-      addAdd2CartListener();
+      add2CartListener();
     })
     .catch(err => console.log(err));
     
@@ -193,7 +193,7 @@ function add2Cart(prodObj) {
 }
 
 
-function addAdd2CartListener(){
+function add2CartListener(){
   const add2CartBtn = document.getElementById('addToCart');
   add2CartBtn.addEventListener('click', add2Cart);
 }
