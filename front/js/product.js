@@ -161,15 +161,8 @@ function doTheFetch(url) {
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      id;
-      color;
-      name;
-      price;
-      quantity;
-      // title - get reference
-      // img and alt - get reference
-      // price - get reference
-      // input for qty - get reference
+      initProdObj(data); // initialization
+      makeProdCard(data) // creating the card of the product
       qty.addEventListener('click', changeQty); // add listener to qty input
       makePulldown(pullDownArr);
       add2CartListener();
@@ -178,7 +171,14 @@ function doTheFetch(url) {
     
 
 }
-
+// initialize the object parameters
+function initProdObj(obj) {
+  prodObj.id = obj.id;
+  prodObj.name = obj.name;
+  prodObj.color = obj.color;
+  prodObj.imgUrL = obj.imgUrL;
+  prodObj.price = obj.price;
+}
 
 // creating the 'adding to cart' fonction when click the 'add' button
 
@@ -196,6 +196,23 @@ function add2Cart(prodObj) {
 function add2CartListener(){
   const add2CartBtn = document.getElementById('addToCart');
   add2CartBtn.addEventListener('click', add2Cart);
+}
+
+function makeProdCard(obj) {
+  // do things with obj property values
+  
+  // add listener to qty input
+  const qty = document.getElementById('qty');
+  qty.addEventListener('change', updateQty);
+  
+  // add listener to add 2 cart button
+  const addBtn = document.getElementById('add');
+  addBtn.addEventListener('click', add2Cart);
+  
+  
+  // create pulldown options & add listener
+  makePullDown(obj.colors);
+  
 }
 
 // calling the fetch :
