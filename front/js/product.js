@@ -20,10 +20,6 @@ getProduct();
 // creating a function to get only THE product to display
 
 function getProduct() {
-
-  
- 
-
   // fetch is calling the server to get the URL of the Product's Id and display product details
   fetch(productIdURL)
     .then((response)=> {
@@ -31,10 +27,14 @@ function getProduct() {
       return response.json();
     })
     .then((data)=> {
-    // calling the function to display the product on page
-    console.log(data);
-    displayProduct(data);
+      // calling the function to display the product on page
+      console.log(data);
+      displayProduct(data);
+      initProdObj(data); // initialization
+      makeProdCard(data) // creating the card of the product
+      add2CartListener();
     })
+   
 
     // send an error message if something is wrong
     .catch((error) => {console.log(error);})
@@ -143,24 +143,7 @@ let cartArr = JSON.parse(cartStr);
 const InCartArr = [];
 
 
-// creating the Fetch :
-function doTheFetch(url) {
-  // get references to elements that you need
-  
-  // run the fetch - async
-  // to call functions that build page, add listeners, etc.
-  fetch(url)
-    .then(res => res.json())
-    .then(data => {
-      initProdObj(data); // initialization
-      makeProdCard(data) // creating the card of the product
-      makePulldown(pullDownArr);
-      add2CartListener();
-    })
-    .catch(err => console.log(err));
-    
 
-}
 // initialize the product's object parameters
 function initProdObj(obj) {
   prodObj.id = obj.id;
@@ -208,8 +191,6 @@ function updateQty (event){
   prodObj.quantity = event.target.value;
   console.log(prodObj);
 }
-// calling the fetch :
-doTheFetch(productIdURL);
 
 
 
