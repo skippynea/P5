@@ -29,7 +29,6 @@ const buttonClearCart = document.querySelector("deleteItem");
 buttonClearCart.addEventListener("click",()=>{
   localStorage.clear();
 });
-
 }
 
 function checkAndConfirmCart() {
