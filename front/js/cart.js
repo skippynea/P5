@@ -9,12 +9,12 @@ function manageCart() {
   displayCart();
   totalCart();
   clearCart ();
-  confirmCart ();
+  checkAndConfirmCart ();
 }
 
 function displayCart() {
 // displaying the object's selection in cart
-
+let test = 
 
 }
 
@@ -25,11 +25,11 @@ function totalCart() {
 
 function clearCart() {
 // to clear the cart : reset number and selection
-
+const buttonClearCart = document.querySelector("deleteItem")
 
 }
 
-function confirmCart() {
+function checkAndConfirmCart() {
   // to confirm selection and send the command to server
 
 }

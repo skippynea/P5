@@ -83,8 +83,6 @@ function displayProduct(dataObject) {
   // Getting the colors' values of "productObject" from fetch call to insert in menu
 
   // productObject.innerText = dataObject.description;
-
-
 }
 
 function displayImage (img) {
