@@ -25,7 +25,7 @@ function totalCart() {
 
 function clearCart() {
 // to clear the cart : reset number and selection
-const buttonClearCart = document.querySelector("deleteItem");
+const buttonClearCart = document.querySelector(".deleteItem");
 buttonClearCart.addEventListener("click",()=>{
   localStorage.clear();
 });
@@ -33,6 +33,7 @@ buttonClearCart.addEventListener("click",()=>{
 
 function checkAndConfirmCart() {
   // to confirm selection and send the command to server
+
 
 }
 

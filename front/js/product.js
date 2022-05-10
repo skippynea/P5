@@ -14,6 +14,23 @@ let objectId = params.get("id");
 let productIdURL = baseURL + objectId;
 console.log(productIdURL);
 
+// managing local storage :
+// get cart string from local storage
+let cartStr = localStorage.getItem('cart') || '[]';
+// parse into datastructure - array of obj
+let cartArr = JSON.parse(cartStr);
+
+// mock data to test makePulldown function
+const InCartArr = [];
+
+// initialization of the variable to store the object's values
+const prodObj = {
+  id: '',
+  color : '',
+  name : '',
+  quantity : 1
+}
+
 // Execute the function to get the product ID and display it on product page
 getProduct();
 
@@ -32,7 +49,7 @@ function getProduct() {
       displayProduct(data);
       initProdObj(data); // initialization
       makeProdCard(data) // creating the card of the product
-      add2CartListener();
+      
     })
    
 
@@ -48,13 +65,13 @@ function getProduct() {
 
 // Using the function to create a page with the product
 function displayProduct(dataObject) {
-    // Constante declaration and stocked the value in the variable
-    const productImg = document.querySelector(".item__img");
-    //const productImg = document.querySelector(".item__img img");
-    const productName = document.getElementById("title");
-    const productPrice = document.getElementById("price");
-    const productDescription = document.getElementById("description");
-    const pullDownArr = document.getElementById("colors");
+  // Constante declaration and stocked the value in the variable
+  const productImg = document.querySelector(".item__img");
+  //const productImg = document.querySelector(".item__img img");
+  const productName = document.getElementById("title");
+  const productPrice = document.getElementById("price");
+  const productDescription = document.getElementById("description");
+  const pullDownArr = document.getElementById("colors");
     
   productPrice.innerText = dataObject.price;
   productName.innerText = dataObject.name;
@@ -67,27 +84,25 @@ function displayProduct(dataObject) {
   console.log(dataObject.imageUrl);
   img.src = dataObject.imageUrl;
   img.alt = dataObject.altTxt;
-  // productImg.src = dataObject.imageUrl;
-  // productImg.alt = dataObject.altTxt;
+
   console.log(productImg);
-  // displayImage (img);  //img.src = productImg ;
+  
   
   productImg.appendChild(img);
 
   // Add option tags to pullDown menu
   makePullDown (dataObject.colors);
 
-  //Adding the product to cart
-  //addToCart(productObj);
-  //console.log(productObj);
-  // Getting the colors' values of "productObject" from fetch call to insert in menu
+  // add listener to qty input
+  const qty = document.getElementById('quantity');
+  qty.addEventListener('change', updateQty);
+  
+  // add listener to add 2 cart button
+  const addBtn = document.getElementById('addToCart');
+  addBtn.addEventListener('click', addToCart);
 
-  // productObject.innerText = dataObject.description;
 }
 
-function displayImage (img) {
-  productImg.innerHTML = img;
-}
 
 // User select the product's color in pull down menu :
 
@@ -122,25 +137,8 @@ function handlePullDown(e) {
 
 
 // #3 : "Adding products to the cart"
+
 // Milestone #7: "Adding products to the cart"
-
-// initialization of the variable to store the object's values
-const prodObj = {
-  id: '',
-  color : '',
-  name : '',
-  quantity : 1
-}
-// managing local storage :
-// get cart string from local storage
-let cartStr = localStorage.getItem('cart') || '[]';
-// parse into datastructure - array of obj
-let cartArr = JSON.parse(cartStr);
-
-// mock data to test makePulldown function
-const InCartArr = [];
-
-
 
 // initialize the product's object parameters
 function initProdObj(obj) {
@@ -163,30 +161,8 @@ function add2Cart(prodObj) {
 }
 
 
-function add2CartListener(){
-  const add2CartBtn = document.getElementById('addToCart');
-  add2CartBtn.addEventListener('click', addToCart);
-}
-
-function makeProdCard(obj) {
-  // do things with obj property values
-  
-  // add listener to qty input
-  const qty = document.getElementById('quantity');
-  qty.addEventListener('change', updateQty);
-  
-  // add listener to add 2 cart button
-  const addBtn = document.getElementById('addToCart');
-  addBtn.addEventListener('click', addToCart);
-  
-  
-  // create pulldown options & add listener
-  makePullDown(obj.colors);
-  
-}
-
 function updateQty (event){
-  prodObj.quantity = event.target.value;
+  prodObj.quantity= event.target.value;
   console.log(prodObj);
 }
 
