@@ -14,7 +14,7 @@ function manageCart() {
 
 function displayCart() {
 // displaying the object's selection in cart
-let test = 
+let testObj = 
 
 }
 
@@ -25,7 +25,10 @@ function totalCart() {
 
 function clearCart() {
 // to clear the cart : reset number and selection
-const buttonClearCart = document.querySelector("deleteItem")
+const buttonClearCart = document.querySelector("deleteItem");
+buttonClearCart.addEventListener("click",()=>{
+  localStorage.clear();
+});
 
 }
 
