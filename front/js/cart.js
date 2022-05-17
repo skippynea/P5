@@ -12,9 +12,26 @@ function manageCart() {
   checkAndConfirmCart ();
 }
 
-function displayCart() {
+function displayCart(prodObj) {
 // displaying the object's selection in cart
-let testObj = 
+  const prodImg = document.querySelector(".cart__item__img");
+  const prodName = document.getElementById("product-ID");
+  const prodColor = document.getElementById("product-color");
+  const prodQuantity = document.getElementById("cart__item__content__settings__quantity");
+  const prodDescription = document.getElementById("cart__item__content__description");
+  const prodPrice = document.getElementById("cart__price");
+
+  prodPrice.innerText = prodObj.price;
+  prodName.innerText = prodObj.name;
+  prodDescription.innerText = prodObj.description;
+  // product's image displayed from url
+  const img = document.createElement ('img');
+  img.src = prodObj.imageUrl;
+  img.alt = prodObj.altTxt;
+  productImg.appendChild(img);
+  // add listener to qty input
+  
+  prodQuantity.addEventListener('change', updateQty);
 
 }
 
@@ -23,7 +40,7 @@ function totalCart() {
 
 }
 
-function clearCart() {
+function clearCart(prodObj) {
 // to clear the cart : reset number and selection
 const buttonClearCart = document.querySelector(".deleteItem");
 buttonClearCart.addEventListener("click",()=>{

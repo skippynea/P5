@@ -31,6 +31,15 @@ const prodObj = {
   quantity : 1
 }
 
+// initialize the product's object parameters
+function initProdObj(obj) {
+  prodObj.id = obj.id;
+  prodObj.name = obj.name;
+  prodObj.imgUrL = obj.imgUrL;
+  prodObj.price = obj.price;
+}
+
+
 // Execute the function to get the product ID and display it on product page
 getProduct();
 
@@ -49,10 +58,7 @@ function getProduct() {
       displayProduct(data);
       initProdObj(data); // initialization
       makeProdCard(data) // creating the card of the product
-      
     })
-   
-
     // send an error message if something is wrong
     .catch((error) => {console.log(error);})
   ;
@@ -82,6 +88,7 @@ function displayProduct(dataObject) {
   //document.body.appendChild(dataObject.imageUrl);
   
   console.log(dataObject.imageUrl);
+
   img.src = dataObject.imageUrl;
   img.alt = dataObject.altTxt;
 
@@ -100,7 +107,6 @@ function displayProduct(dataObject) {
   // add listener to add 2 cart button
   const addBtn = document.getElementById('addToCart');
   addBtn.addEventListener('click', addToCart);
-
 }
 
 
@@ -131,6 +137,7 @@ function makePullDown(pullDownArr) {
   }
 }
 
+// Declare a function to display the PullDown menu
 function handlePullDown(e) {
   prodObj.option = e.target.value;
 }
@@ -139,14 +146,6 @@ function handlePullDown(e) {
 // #3 : "Adding products to the cart"
 
 // Milestone #7: "Adding products to the cart"
-
-// initialize the product's object parameters
-function initProdObj(obj) {
-  prodObj.id = obj.id;
-  prodObj.name = obj.name;
-  prodObj.imgUrL = obj.imgUrL;
-  prodObj.price = obj.price;
-}
 
 // creating the 'adding to cart' fonction when click the 'add' button
 
@@ -160,12 +159,11 @@ function add2Cart(prodObj) {
    }, false);
 }
 
-
+// declare a function to manage the quantity
 function updateQty (event){
   prodObj.quantity= event.target.value;
   console.log(prodObj);
 }
-
 
 
 // Template in HTML :
