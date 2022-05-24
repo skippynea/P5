@@ -137,7 +137,8 @@ function makePullDown(pullDownArr) {
   }
 }
 
-// Declare a function to display the PullDown menu
+// Declare a function to display the PullDown menu 
+// and keep the color selection choice
 function handlePullDown(e) {
   prodObj.option = e.target.value;
 }
@@ -156,6 +157,11 @@ function add2Cart(prodObj) {
     if (quantity.value > 0 && quantity.value < 101);
     // create the array to hold all the products selected in cart
     let inCartArr = [];
+    // add product selected into the array "cart"
+    
+    
+    console.log(inCartArr);
+
    }, false);
 }
 

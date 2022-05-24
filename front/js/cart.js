@@ -21,16 +21,16 @@ function displayCart(prodObj) {
   const prodDescription = document.getElementById("cart__item__content__description");
   const prodPrice = document.getElementById("cart__price");
 
-  prodPrice.innerText = prodObj.price;
+  //prodPrice.innerText = prodObj.price;
   prodName.innerText = prodObj.name;
   prodDescription.innerText = prodObj.description;
   // product's image displayed from url
   const img = document.createElement ('img');
-  img.src = prodObj.imageUrl;
+  img.src = prodObj.imgUrL;
   img.alt = prodObj.altTxt;
-  productImg.appendChild(img);
-  // add listener to qty input
+  prodImg.appendChild(img);
   
+  // add listener to qty input
   prodQuantity.addEventListener('change', updateQty);
 
 }
