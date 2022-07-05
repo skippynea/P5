@@ -21,6 +21,7 @@ fetch(dataURL)
 
   // send an error message if something is wrong
 
+;
 
 // Creating a function to make all the cards to displays the products
 
@@ -37,7 +38,7 @@ function makeCards(dataArr) {
       items.appendChild(card);
     }
   
-  }
+}
 
 // Using the function to create a card for each product
 function makeCard(productObj) {
