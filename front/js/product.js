@@ -20,23 +20,16 @@ let cartStr = localStorage.getItem('cart') || '[]';
 // parse into datastructure - array of obj
 let cartArr = JSON.parse(cartStr);
 
-// mock data to test makePulldown function
-const InCartArr = [];
-
 // initialization of the variable to store the object's values
 const prodObj = {
-  id: '',
-  color : '',
-  name : '',
   quantity : 1
 }
 
 // initialize the product's object parameters
 function initProdObj(obj) {
-  prodObj.id = obj.id;
+  prodObj.id = obj._id;
   prodObj.name = obj.name;
-  prodObj.imgUrL = obj.imgUrL;
-  prodObj.price = obj.price;
+  prodObj.imageUrl = obj.imageUrl;
 }
 
 
@@ -57,7 +50,7 @@ function getProduct() {
       console.log(data);
       displayProduct(data);
       initProdObj(data); // initialization
-      makeProdCard(data) // creating the card of the product
+      //makeProdCard(data) // creating the card of the product
     })
     // send an error message if something is wrong
     .catch((error) => {console.log(error);})
@@ -106,7 +99,7 @@ function displayProduct(dataObject) {
   
   // add listener to add 2 cart button
   const addBtn = document.getElementById('addToCart');
-  addBtn.addEventListener('click', addToCart);
+  addBtn.addEventListener('click', add2Cart);
 }
 
 
@@ -140,7 +133,7 @@ function makePullDown(pullDownArr) {
 // Declare a function to display the PullDown menu 
 // and keep the color selection choice
 function handlePullDown(e) {
-  prodObj.option = e.target.value;
+  prodObj.color = e.target.value;
 }
 
 
@@ -150,19 +143,18 @@ function handlePullDown(e) {
 
 // creating the 'adding to cart' fonction when click the 'add' button
 
-function add2Cart(prodObj) {
+function add2Cart() {
   const add2CartBtn = document.getElementById(addToCart);
-  add2CartBtn.addEventListener("click", () => { 
     // Testing the quantity selected by user
     if (quantity.value > 0 && quantity.value < 101);
-    // create the array to hold all the products selected in cart
-    let inCartArr = [];
-    // add product selected into the array "cart"
-    
-    
-    console.log(inCartArr);
+    cartArr.push(prodObj);
+    console.log(cartArr);
+    saveCart(cartArr);
+}
 
-   }, false);
+function saveCart (basket) {
+  localStorage.setItem("cart", JSON.stringify(basket));
+  console.log(basket);
 }
 
 // declare a function to manage the quantity
