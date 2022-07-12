@@ -109,10 +109,10 @@ function displayCart(prodObj) {
     return template;
 }
 
-function totalCart() {
-// counting the total number and total price of selection in the cart
-
-}
+function totalCart(prodObj, quantity) {
+  // counting the total number and total price of selection in the cart
+  
+  }
 
 function clearCart(prodObj) {
 // to clear the cart : reset number and selection
@@ -120,6 +120,11 @@ const buttonClearCart = document.querySelector(".deleteItem");
 buttonClearCart.addEventListener("click",()=>{
   localStorage.clear();
 });
+}
+
+function removeProduct(ProdObj){
+// to remove only one product from cart
+
 }
 
 function checkAndConfirmCart() {
