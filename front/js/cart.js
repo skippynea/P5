@@ -7,26 +7,18 @@
 // getting the data from server with an URL
 const dataURL = 'http://localhost:3000/api/products/'; 
 
-
+let cartArr;
+let cartStr;
 
 // managing local storage :
-function getCart(dataArray) {
+function getCart() {
   // get cart string from local storage
-  let cartStr = localStorage.getItem('cart') || '[]';
+  cartStr = localStorage.getItem('cart') || '[]';
+  
   // parse into datastructure - array of obj
-  if(cartStr == null) {
-    return [];
-  }
-  else {
-    return let cartArr = JSON.parse(cartStr);
-    console.log(cartArr);
-  }
+  cartArr = JSON.parse(cartStr);
+  console.log(cartArr);
 }
-
-
-
-
-
 
 // declare a variable to store the TOTAL PRICE
 let totalPrice=0;
@@ -58,8 +50,9 @@ fetch(dataURL)
   console.log(data);
 })
 .then(()=> {
-  getCart(data)
+  getCart();
   prodCards(cartArr);
+  clearCart(); // Delete item in cart if click on "delete" button
 })
 .catch((error) => console.log(error));
 
@@ -75,15 +68,15 @@ fetch(dataURL)
 
 function prodCards(dataArr) {
   // stash a reference to container on the page
-  const items = document.getElementById('items');
+  const items = document.getElementById('cart__items');
 
   // Boucle for iteration to make a card out of each data object
   // put the length of the array in variable 'lenght'
   const length = dataArr.length
 
   for(let i = 0; i < length; i++) {
-    const card = prodCard(dataArr[i]);
-    items.appendChild(card);
+    const card = displayCart(dataArr[i]);
+    items.insertAdjacentHTML('beforeEnd',card);
   }
 }
 
@@ -91,20 +84,20 @@ function prodCards(dataArr) {
 function displayCart(prodObj) {
   // declare the template to display the productObject on the cart page
   let template = `
-    <article class="cart__item" data-id="${product-ID}" data-color="${product-color}">
+    <article class="cart__item" data-id=${prodObj.id} data-color=${prodObj.color}>
     <div class="cart__item__img">
-      <img src="${}" alt="${}">
+      <img src=${prodObj.imageUrl} alt="">
     </div>
     <div class="cart__item__content">
       <div class="cart__item__content__description">
-        <h2>"${}"</h2>
-        <p>"${}"</p>
-        <p>"${}"</p>
+        <h2>${prodObj.name}</h2>
+        <p>${prodObj.color}</p>
+        <p>€${priceObj[prodObj.id]}</p>
       </div>
       <div class="cart__item__content__settings">
         <div class="cart__item__content__settings__quantity">
           <p>Qté : </p>
-          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
+          <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value=${prodObj.quantity}>
         </div>
         <div class="cart__item__content__settings__delete">
           <p class="deleteItem">Delete</p>
