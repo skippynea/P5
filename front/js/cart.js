@@ -28,7 +28,7 @@ let totalPrice=0;
 const priceObj = {
 }
 
-// initialize the product's object parameters
+// initialize the price object
 function initPriceObj(dataArray) {
   // this function need to create Property and Value
   // Property _id & Object _price
@@ -46,25 +46,64 @@ fetch(dataURL)
 .then((response) => response.json())
 .then((data) => {
   initPriceObj(data);
-  // this function is to put product's information in an array
+  // this function is to put price information in an object (priceObject)
   console.log(data);
 })
 .then(()=> {
   getCart();
   prodCards(cartArr);
-  clearCart(); // Delete item in cart if click on "delete" button
 })
-.catch((error) => console.log(error));
+.then(() => {
+  addCartListeners();
+})
+
+.catch(err => console.log(err));
+
+function handleDelete(ev){
+  console.log(ev.target);
+  // get to the article and get the id + color
+  const id= '';
+  const color= '';
+   
+  // use id and color to remove "Object" from cartArr
+
+  // traverse the DOM to article ancestor
+
+  const ancestor=ev.target.parentElement.parentElement.parentElement.parentElement;
+  console.log(ancestor);
+  ancestor.remove();
+}
+
+
+function handleQuantity(ev){
+  console.log(ev.target);
+}
+
+// all this function does is add the listeners
+function addCartListeners(){
+
+// find the elements that need the listeners
+const deleteCollection = document.getElementsByClassName('deleteItem');
+const inputCollection = document.getElementsByClassName('itemQuantity');
+console.log(deleteCollection);
+  // add the listeners to those elements
+  for (let i=0; i<deleteCollection.length; i++){
+  deleteCollection[i].addEventListener('click', handleDelete);
+  }
+  for (let j=0; j<inputCollection.length; j++){
+  inputCollection[j].addEventListener('change', handleQuantity);
+  }
+
+}
 
 // send an error message if something is wrong
-;
+
 
 
 // Milestone #8: "Displaying a recap table of purchases on the cart page"
 // manageCart(); 
 
 // Get the cart data from localStorage
-
 
 function prodCards(dataArr) {
   // stash a reference to container on the page
@@ -107,11 +146,20 @@ function displayCart(prodObj) {
     </article>        
   `;
     return template;
+
+
 }
 
 function totalCart(prodObj, quantity) {
   // counting the total number and total price of selection in the cart
   
+  const items = document.getElementById('cart__items');
+  const length = dataArr.length;
+  
+  for (let i = 0; i < length; i++) {
+    const card = Cart(dataArr[i]);
+  } 
+  return totalPrice;
   }
 
 function clearCart(prodObj) {
