@@ -72,7 +72,6 @@ function handleDelete(ev){
   console.log(ancestor);
   ancestor.remove();
 }
-// try to test git
 
 function handleQuantity(ev){
   console.log(ev.target);
