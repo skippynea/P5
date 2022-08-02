@@ -68,7 +68,6 @@ function handleDelete(ev){
   // use id and color to remove "Object" from cartArr
 
   // traverse the DOM to article ancestor
-
   const ancestor=ev.target.parentElement.parentElement.parentElement.parentElement;
   console.log(ancestor);
   ancestor.remove();
