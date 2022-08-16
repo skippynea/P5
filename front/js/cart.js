@@ -52,6 +52,8 @@ fetch(dataURL)
 .then(()=> {
   getCart();
   prodCards(cartArr);
+  updateQtyTotal ();
+  updatePriceTotal ();
 })
 .then(() => {
   addCartListeners();
@@ -61,16 +63,43 @@ fetch(dataURL)
 
 function handleDelete(ev){
   console.log(ev.target);
-  // get to the article and get the id + color
-  const id= '';
-  const color= '';
-   
+  
   // use id and color to remove "Object" from cartArr
 
   // traverse the DOM to article ancestor
   const ancestor=ev.target.parentElement.parentElement.parentElement.parentElement;
   console.log(ancestor);
+
+  // after you find the ancestor, get the ID and the COLOR
+  // this are the values of data attribute on the ancestor article
+  const id = ancestor.dataset.id;
+  const color = ancestor.dataset.color ;
+  console.log(id);
+  console.log(color);
+  // How do i use this ID and COLOR to delete this object from the cartArray ?
+  for(let i = 0; i < cartArr.length; i++) {
+    if(id===cartArr[i].id && color===cartArr[i].color) {
+      const indexOfObject=cartArr.findIndex(object=>{
+        return id===object.id && color===object.color
+      }); 
+      console.log(indexOfObject);
+      // delete from the cartArr "cart array"
+      cartArr.splice(indexOfObject, 1);
+    }
+    console.log(cartArr);
+    // delete the localstorage
+    saveCart(cartArr);
+    updateQtyTotal();
+    updatePriceTotal ();
+
+  }
+  // delete from the DOM
   ancestor.remove();
+}
+
+function saveCart (basket) {
+  localStorage.setItem("cart", JSON.stringify(basket));
+  console.log(basket);
 }
 
 function handleQuantity(ev){
@@ -79,19 +108,17 @@ function handleQuantity(ev){
 
 // all this function does is add the listeners
 function addCartListeners(){
-
-// find the elements that need the listeners
-const deleteCollection = document.getElementsByClassName('deleteItem');
-const inputCollection = document.getElementsByClassName('itemQuantity');
-console.log(deleteCollection);
-  // add the listeners to those elements
-  for (let i=0; i<deleteCollection.length; i++){
-  deleteCollection[i].addEventListener('click', handleDelete);
-  }
-  for (let j=0; j<inputCollection.length; j++){
-  inputCollection[j].addEventListener('change', handleQuantity);
-  }
-
+  // find the elements that need the listeners
+  const deleteCollection = document.getElementsByClassName('deleteItem');
+  const inputCollection = document.getElementsByClassName('itemQuantity');
+  console.log(deleteCollection);
+    // add the listeners to those elements
+    for (let i=0; i<deleteCollection.length; i++){
+      deleteCollection[i].addEventListener('click', handleDelete);
+    }
+    for (let j=0; j<inputCollection.length; j++){
+      inputCollection[j].addEventListener('change', handleQuantity);
+    }
 }
 
 // send an error message if something is wrong
