@@ -97,6 +97,24 @@ function handleDelete(ev){
   ancestor.remove();
 }
 
+function updatePriceTotal(dataArray){
+  dataArray.forEach(
+    function(prodObj) 
+    {
+      totalPriceObj[prodObj._id]=++prodObj.price;
+    }
+  );
+}
+
+function updateQtyTotal(dataArray){
+  dataArray.forEach(
+    function(prodObj) 
+    {
+      quantityObj[prodObj._id]=prodObj.quantity;
+    }
+  );
+}
+
 function saveCart (basket) {
   localStorage.setItem("cart", JSON.stringify(basket));
   console.log(basket);
