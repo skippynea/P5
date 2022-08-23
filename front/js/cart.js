@@ -23,6 +23,8 @@ function getCart() {
 // declare a variable to store the TOTAL PRICE
 let totalPrice=0;
 
+// declare a variable to store the TOTAL Quantity
+let totalQty=0;
 
 // initialization of the variable to store the object's values
 const priceObj = {
@@ -38,7 +40,7 @@ function initPriceObj(dataArray) {
       priceObj[prodObj._id]=prodObj.price;
     }
   ); 
-  console.log(priceObj);
+  console.log("priceObj",priceObj);
 }
 
 // fetch is calling the server
@@ -52,8 +54,8 @@ fetch(dataURL)
 .then(()=> {
   getCart();
   prodCards(cartArr);
-  updateQtyTotal ();
-  updatePriceTotal ();
+  updateQtyTotal (cartArr);
+  updatePriceTotal (cartArr);
 })
 .then(() => {
   addCartListeners();
@@ -89,30 +91,30 @@ function handleDelete(ev){
     console.log(cartArr);
     // delete the localstorage
     saveCart(cartArr);
-    updateQtyTotal();
-    updatePriceTotal ();
+    updateQtyTotal(cartArr);
+    updatePriceTotal (cartArr);
 
   }
   // delete from the DOM
   ancestor.remove();
 }
 
-function updatePriceTotal(dataArray){
-  dataArray.forEach(
-    function(prodObj) 
-    {
-      totalPriceObj[prodObj._id]=++prodObj.price;
-    }
-  );
-}
-
+// updating the "Total quantity" in cart
 function updateQtyTotal(dataArray){
   dataArray.forEach(
-    function(prodObj) 
-    {
-      quantityObj[prodObj._id]=prodObj.quantity;
-    }
+    (item) => totalQty+= parseInt(item.quantity)
   );
+    console.log(totalQty);
+    // may have to reset TOTAL QTY to zero
+}
+
+// updating the "Total price" in cart (cartArr)
+function updatePriceTotal(dataArray){
+  dataArray.forEach(
+    (item) => totalPrice+=(priceObj[item.id])*(parseInt(item.quantity))
+  );
+    console.log(totalPrice);
+    // may have to reset TOTAL PRICE to zero
 }
 
 function saveCart (basket) {
@@ -122,6 +124,37 @@ function saveCart (basket) {
 
 function handleQuantity(ev){
   console.log(ev.target);
+  // update specific object in cartArray
+    // traverse the DOM to article ancestor
+    const ancestor=ev.target.parentElement.parentElement.parentElement.parentElement;
+    console.log(ancestor);
+
+    // after you find the ancestor, get the ID and the COLOR
+    // this are the values of data attribute on the ancestor article
+    const id = ancestor.dataset.id;
+    const color = ancestor.dataset.color ;
+    console.log(id);
+    console.log(color);
+    // How do i use this ID and COLOR to delete this object from the cartArray ?
+    for(let i = 0; i < cartArr.length; i++) {
+      if(id===cartArr[i].id && color===cartArr[i].color) {
+        const indexOfObject=cartArr.findIndex(object=>{
+          return id===object.id && color===object.color
+        }); 
+        console.log(indexOfObject);
+        //
+        cartArr[indexOfObject].quantity=ev.target.value;
+      }
+      console.log(cartArr);
+      // delete the localstorage
+      saveCart(cartArr);
+      updateQtyTotal(cartArr);
+      updatePriceTotal (cartArr);
+
+    }
+  // convert to string
+  // update the localstorage
+  // updated totalPrice and update totalQty on the page
 }
 
 // all this function does is add the listeners
