@@ -20,6 +20,11 @@ function getCart() {
   console.log(cartArr);
 }
 
+function saveCart (basket) {
+  localStorage.setItem("cart", JSON.stringify(basket));
+  console.log(basket);
+}
+
 // declare a variable to store the TOTAL PRICE
 let totalPrice=0;
 
@@ -56,6 +61,7 @@ fetch(dataURL)
   prodCards(cartArr);
   updateQtyTotal (cartArr);
   updatePriceTotal (cartArr);
+  displayTotalCart();
 })
 .then(() => {
   addCartListeners();
@@ -91,16 +97,21 @@ function handleDelete(ev){
     console.log(cartArr);
     // delete the localstorage
     saveCart(cartArr);
-    updateQtyTotal(cartArr);
-    updatePriceTotal (cartArr);
+    
 
   }
+  updateQtyTotal (cartArr);
+  updatePriceTotal (cartArr);
+  displayTotalCart();
+ 
   // delete from the DOM
   ancestor.remove();
 }
 
 // updating the "Total quantity" in cart
 function updateQtyTotal(dataArray){
+  // reset 
+  totalQty=0;
   dataArray.forEach(
     (item) => totalQty+= parseInt(item.quantity)
   );
@@ -110,6 +121,8 @@ function updateQtyTotal(dataArray){
 
 // updating the "Total price" in cart (cartArr)
 function updatePriceTotal(dataArray){
+  // reset
+  totalPrice=0;
   dataArray.forEach(
     (item) => totalPrice+=(priceObj[item.id])*(parseInt(item.quantity))
   );
@@ -117,10 +130,7 @@ function updatePriceTotal(dataArray){
     // may have to reset TOTAL PRICE to zero
 }
 
-function saveCart (basket) {
-  localStorage.setItem("cart", JSON.stringify(basket));
-  console.log(basket);
-}
+
 
 function handleQuantity(ev){
   console.log(ev.target);
@@ -135,7 +145,7 @@ function handleQuantity(ev){
     const color = ancestor.dataset.color ;
     console.log(id);
     console.log(color);
-    // How do i use this ID and COLOR to delete this object from the cartArray ?
+    // How do i use this ID and COLOR to find this object from the cartArray ?
     for(let i = 0; i < cartArr.length; i++) {
       if(id===cartArr[i].id && color===cartArr[i].color) {
         const indexOfObject=cartArr.findIndex(object=>{
@@ -146,15 +156,22 @@ function handleQuantity(ev){
         cartArr[indexOfObject].quantity=ev.target.value;
       }
       console.log(cartArr);
-      // delete the localstorage
-      saveCart(cartArr);
-      updateQtyTotal(cartArr);
-      updatePriceTotal (cartArr);
+      // delete the localstorage ("localStorage.clear()")
+      saveCart(cartArr); 
+      
 
     }
-  // convert to string
+    updateQtyTotal(cartArr);
+    updatePriceTotal (cartArr);
+  // convert to string => same as saveCart ?
+    
   // update the localstorage
-  // updated totalPrice and update totalQty on the page
+  // localStorage.setItem(ev,);
+
+  // updated totalPrice and update totalQty to display on the page
+  getCart();
+
+  displayTotalCart();
 }
 
 // all this function does is add the listeners
@@ -235,7 +252,8 @@ function totalCart(prodObj, quantity) {
   for (let i = 0; i < length; i++) {
     const card = Cart(dataArr[i]);
   } 
-  return totalPrice;
+
+  // return totalPrice;
   }
 
 function clearCart(prodObj) {
@@ -245,6 +263,19 @@ buttonClearCart.addEventListener("click",()=>{
   localStorage.clear();
 });
 }
+
+function displayTotalCart(cartObj) {
+   // Display Total Qty on the cart page
+  const cartTotalQty=document.getElementById('totalQuantity');
+  console.log(cartTotalQty);
+  cartTotalQty.innerText = totalQty;
+  // display the Total Price
+  const cartTotalPrice=document.getElementById('totalPrice');
+  console.log(cartTotalPrice);
+  cartTotalPrice.innerText = totalPrice;
+
+}
+
 
 function removeProduct(ProdObj){
 // to remove only one product from cart
