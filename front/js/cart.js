@@ -212,7 +212,52 @@ function prodCards(dataArr) {
     const card = displayCart(dataArr[i]);
     items.insertAdjacentHTML('beforeEnd',card);
   }
+
+  // get hold the "order" button
+  const orderButton = document.getElementById('order');
+  orderButton.addEventListener('click', handleOrder);
+
 }
+
+function handleOrder() {
+  // get values of input fields
+
+  // 1rst Name :
+  const firstName = document.getElementById('firstName').value;
+  console.log(firstName);
+  for(let i = 0; i < cartArr.length; i++) {
+    
+  }
+
+  // lastName :
+  const lastName = document.getElementById('lastName').value;
+  console.log(firstName);
+  for(let i = 0; i < cartArr.length; i++) {
+    
+  }
+    
+  // Address :
+  const Address = document.getElementById('address').value;
+  console.log(Address);
+  for(let i = 0; i < cartArr.length; i++) {
+    
+  }
+
+  //City
+  const City = document.getElementById('city').value;
+  console.log(City);
+  for(let i = 0; i < cartArr.length; i++) {
+    
+  }
+
+  //Email
+  const Email = document.getElementById('email').value;
+  console.log(Email);
+  for(let i = 0; i < cartArr.length; i++) {
+    
+  }
+}
+
 
 
 function displayCart(prodObj) {
