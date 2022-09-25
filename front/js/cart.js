@@ -69,6 +69,8 @@ fetch(dataURL)
 
 .catch(err => console.log(err));
 
+
+// managing the delete button for the cart page :
 function handleDelete(ev){
   console.log(ev.target);
   
