@@ -67,6 +67,7 @@ fetch(dataURL)
   addCartListeners();
 })
 
+
 .catch(err => console.log(err));
 
 
@@ -221,44 +222,67 @@ function prodCards(dataArr) {
 
 function handleOrder() {
   // get values of input fields
+      // get Id from products in the cart, and put them in an array 
+  const userDetails = 
+  {
+    contact: {
+     firstName: '',
+     lastName: '',
+     address: '',
+     city: '',
+     email: ''
+   },
+   products: []
 
-  // 1rst Name :
-  const firstName = document.getElementById('firstName').value;
-  console.log(firstName);
+  }
+  
+  // adding Id to products' Array :
   for(let i = 0; i < cartArr.length; i++) {
-    
+    userDetails.products.push(cartArr[i].id);
   }
 
+
+      // 1rst Name :
+  userDetails.contact.firstName = document.getElementById('firstName').value;
+  console.log(firstName);
+     
+  
+
   // lastName :
-  const lastName = document.getElementById('lastName').value;
+  userDetails.contact.lastName = document.getElementById('lastName').value;
   console.log(firstName);
   for(let i = 0; i < cartArr.length; i++) {
     
   }
     
   // Address :
-  const Address = document.getElementById('address').value;
+  userDetails.contact.Address = document.getElementById('address').value;
   console.log(Address);
   for(let i = 0; i < cartArr.length; i++) {
     
   }
 
-  //City
-  const City = document.getElementById('city').value;
+  //City :
+  userDetails.contact.City = document.getElementById('city').value;
   console.log(City);
   for(let i = 0; i < cartArr.length; i++) {
     
   }
 
-  //Email
-  const Email = document.getElementById('email').value;
+  //Email :
+  userDetails.contact.Email = document.getElementById('email').value;
   console.log(Email);
   for(let i = 0; i < cartArr.length; i++) {
     
   }
+
 }
 
+function saveOrder() {
+  // function to save all the order information into the serveur with API
 
+
+}
 
 function displayCart(prodObj) {
   // declare the template to display the productObject on the cart page
