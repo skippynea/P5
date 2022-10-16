@@ -220,6 +220,27 @@ function prodCards(dataArr) {
 
 }
 
+// regular expression for validation
+let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i; 
+let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
+let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/;
+
+const firstName = document.getElementById('firstName');
+firstName.addEventListener('input', checkFirstName);
+
+// function to validate that user's inputs are correct in first name line
+function checkFirstName() {
+  if (charAlphaRegExp.test(firstName.value)) {
+      firstNameErrorMsg.innerHTML = null;
+      firstName.style.border = '2px solid green';
+      validFirstName = true;
+  } else if (charAlphaRegExp.test(firstName.value) === false||firstName.value === '') {
+      firstNameErrorMsg.innerHTML = 'Please enter a valid first name';
+      firstName.style.border = '2px solid red';
+      validFirstName = false;
+  }
+}
+
 function handleOrder(e) {
   e.preventDefault();
 
@@ -249,18 +270,44 @@ function handleOrder(e) {
       // 1rst Name :
   userDetails.contact.firstName = document.getElementById('firstName').value;
   console.log(firstName);
-     
+  
+  let firstNameErrorMsg = document.getElementById('firstNameErrorMsg');
+  
   
 
   // lastName :
   userDetails.contact.lastName = document.getElementById('lastName').value;
   console.log(lastName);
- 
+  lastName.addEventListener('change', checklastName);
+  let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
+  function checklastName() {
+      if (charAlphaRegExp.test(lastName.value)) {
+        lastNameErrorMsg.innerHTML = null;
+        lastName.style.border = '2px solid green';
+          validlastName = true;
+      } else if (charAlphaRegExp.test(lastName.value) === false||lastName.value === '') {
+        lastNameErrorMsg.innerHTML = 'Please enter a valid first name';
+        lastName.style.border = '2px solid red';
+          validlastName = false;
+      }
+  }
     
   // Address :
   userDetails.contact.address = document.getElementById('address').value;
   console.log(address);
- 
+  address.addEventListener('change', checkaddress);
+  let addressErrorMsg = document.getElementById('addressErrorMsg');
+  function checkaddress() {
+      if (charAlphaRegExp.test(address.value)) {
+          addressErrorMsg.innerHTML = null;
+          address.style.border = '2px solid green';
+          validaddress = true;
+      } else if (charAlphaRegExp.test(address.value) === false||address.value === '') {
+          addressErrorMsg.innerHTML = 'Please enter a valid first name';
+          address.style.border = '2px solid red';
+          validaddress = false;
+      }
+  }
 
   //City :
   userDetails.contact.city = document.getElementById('city').value;
@@ -277,12 +324,12 @@ function handleOrder(e) {
   // fetch post to the server :
   const orderURL = dataURL + 'order'
   fetch(orderURL, {
-  method: 'POST', // or 'PUT'
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(userDetails),
-})
+    method: 'POST', // or 'PUT'
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userDetails),
+  })
   .then((response) => response.json())
   .then((data) => {
     console.log('Success:', data);
@@ -290,6 +337,7 @@ function handleOrder(e) {
     // each product to its specific id for ONE product page
 
     location.href = './confirmation.html?orderNumber=' + data.orderId;
+
   })
   .catch((error) => {
     console.error('Error:', error);
@@ -409,4 +457,3 @@ function checkAndConfirmCart() {
 
 
   
-
