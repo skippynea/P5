@@ -222,7 +222,7 @@ and validated by testing the values inputs in each line of the form (put the lin
 or message error for each wrong action (put the line in red)
 */
 
-// regular expression for validation for email, name, address and city
+// regular expression for validation for "email, name, address and city"
 let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i; 
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/;
