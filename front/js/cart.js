@@ -133,8 +133,6 @@ function updatePriceTotal(dataArray){
     // may have to reset TOTAL PRICE to zero
 }
 
-
-
 function handleQuantity(ev){
   console.log(ev.target);
   // update specific object in cartArray
@@ -193,8 +191,6 @@ function addCartListeners(){
 }
 
 // send an error message if something is wrong
-
-
 
 // Milestone #8: "Displaying a recap table of purchases on the cart page"
 // manageCart(); 
@@ -316,7 +312,9 @@ function checkemail() {
   }
 }
 
-/* function to record all the informations 
+/* 
+Managing the cart form :
+function to record all the informations 
 (firstName, LastName, address, city, email) 
 from the cart form after they've been validated (each line is tested)
 and sending the values to the server
@@ -372,6 +370,10 @@ function handleOrder(e) {
 
 }
 
+
+/*
+This function is to display the only the selected items in cart.
+*/
 function displayCart(prodObj) {
   // declare the template to display the productObject on the cart page
   let template = `
@@ -399,9 +401,22 @@ function displayCart(prodObj) {
   `;
     return template;
 
-
 }
 
+/*
+This function is to delete an item in the cart by clicking on the 'Delete' button.
+*/
+function clearCart(prodObj) {
+  // to clear the cart : reset number and selection
+  const buttonClearCart = document.querySelector(".deleteItem");
+  buttonClearCart.addEventListener("click",()=>{
+    localStorage.clear();
+  });
+  }
+
+/*
+This function is to calculate the total quantity and the total price from selected items in cart.
+*/
 function totalCart(prodObj, quantity) {
   // counting the total number and total price of selection in the cart
   
@@ -415,14 +430,9 @@ function totalCart(prodObj, quantity) {
   // return totalPrice;
   }
 
-function clearCart(prodObj) {
-// to clear the cart : reset number and selection
-const buttonClearCart = document.querySelector(".deleteItem");
-buttonClearCart.addEventListener("click",()=>{
-  localStorage.clear();
-});
-}
-
+/*
+This function is to display informations calculated from selected items in the cart : total quantity and total price.
+*/
 function displayTotalCart(cartObj) {
    // Display Total Qty on the cart page
   const cartTotalQty=document.getElementById('totalQuantity');
