@@ -293,6 +293,22 @@ function checkcity() {
   }
 }
 
+// Constante declaration and event listener for email input by user
+const email = document.getElementById('email');
+email.addEventListener('input', checkemail);
+
+// function to validate that user's inputs are correct in first name's line
+function checkemail() {
+  if (emailRegExp.test(email.value)) {
+      emailErrorMsg.innerHTML = null;
+      email.style.border = '2px solid green';
+      validemail = true;
+  } else if (emailRegExp.test(email.value) === false||email.value === '') {
+      emailErrorMsg.innerHTML = 'Please enter a valid first name';
+      email.style.border = '2px solid red';
+      validemail = false;
+  }
+}
 
 function handleOrder(e) {
   e.preventDefault();
