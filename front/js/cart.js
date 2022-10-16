@@ -225,10 +225,11 @@ let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/;
 
+// Constante declaration and event listener for First Name
 const firstName = document.getElementById('firstName');
 firstName.addEventListener('input', checkFirstName);
 
-// function to validate that user's inputs are correct in first name line
+// function to validate that user's inputs are correct in first name's line
 function checkFirstName() {
   if (charAlphaRegExp.test(firstName.value)) {
       firstNameErrorMsg.innerHTML = null;
@@ -240,6 +241,60 @@ function checkFirstName() {
       validFirstName = false;
   }
 }
+
+// Constante declaration and event listener for Last Name
+const lastName = document.getElementById('lastName');
+lastName.addEventListener('input', checklastName);
+
+// function to validate that user's inputs are correct in last name's line
+function checklastName() {
+  if (charAlphaRegExp.test(lastName.value)) {
+      lastNameErrorMsg.innerHTML = null;
+      lastName.style.border = '2px solid green';
+      validlastName = true;
+  } else if (charAlphaRegExp.test(lastName.value) === false||lastName.value === '') {
+      lastNameErrorMsg.innerHTML = 'Please enter a valid last name';
+      lastName.style.border = '2px solid red';
+      validlastName = false;
+  }
+}
+
+// Constante declaration and event listener for address
+const address = document.getElementById('address');
+address.addEventListener('input', checkaddress);
+
+// function to validate that user's inputs are correct in address's line
+function checkaddress() {
+  if (addressRegExp.test(address.value)) {
+      addressErrorMsg.innerHTML = null;
+      address.style.border = '2px solid green';
+      validaddress = true;
+  } else if (addressRegExp.test(address.value) === false||address.value === '') {
+      addressErrorMsg.innerHTML = 'Please enter a valid address';
+      address.style.border = '2px solid red';
+      validaddress = false;
+  }
+}
+
+// Constante declaration and event listener for city
+const city = document.getElementById('city');
+city.addEventListener('input', checkcity);
+
+// function to validate that user's inputs are correct in city's line
+function checkcity() {
+  if (charAlphaRegExp.test(city.value)) {
+      cityErrorMsg.innerHTML = null;
+      city.style.border = '2px solid green';
+      validcity = true;
+  } else if (charAlphaRegExp.test(city.value) === false||city.value === '') {
+      cityErrorMsg.innerHTML = 'Please enter a valid city name';
+      city.style.border = '2px solid red';
+      validcity = false;
+  }
+}
+
+
+
 
 function handleOrder(e) {
   e.preventDefault();
