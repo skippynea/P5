@@ -220,7 +220,13 @@ function prodCards(dataArr) {
 
 }
 
-// regular expression for validation
+
+/* Control that all the inputs of the USER in the Cart Form are correct
+and validated by testing the values inputs in each line of the form (put the line in green)
+or message error for each wrong action (put the line in red)
+*/
+
+// regular expression for validation for email, name, address and city
 let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i; 
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/;
@@ -310,11 +316,15 @@ function checkemail() {
   }
 }
 
+/* function to record all the informations 
+(firstName, LastName, address, city, email) 
+from the cart form after they've been validated (each line is tested)
+and sending the values to the server
+*/
+
 function handleOrder(e) {
   e.preventDefault();
-
-
-
+  
   // get values of input fields
       // get Id from products in the cart, and put them in an array 
   const userDetails = 
@@ -358,12 +368,6 @@ function handleOrder(e) {
   .catch((error) => {
     console.error('Error:', error);
   });
-
-
-}
-
-function saveOrder() {
-  // function to save all the order information into the serveur with API
 
 
 }
@@ -431,17 +435,6 @@ function displayTotalCart(cartObj) {
 
 }
 
-
-function removeProduct(ProdObj){
-// to remove only one product from cart
-
-}
-
-function checkAndConfirmCart() {
-  // to confirm selection and send the command to server
-
-
-}
 
 /* 
             <section id="cart__items">
