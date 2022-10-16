@@ -220,7 +220,11 @@ function prodCards(dataArr) {
 
 }
 
-function handleOrder() {
+function handleOrder(e) {
+  e.preventDefault();
+
+
+
   // get values of input fields
       // get Id from products in the cart, and put them in an array 
   const userDetails = 
@@ -250,31 +254,47 @@ function handleOrder() {
 
   // lastName :
   userDetails.contact.lastName = document.getElementById('lastName').value;
-  console.log(firstName);
-  for(let i = 0; i < cartArr.length; i++) {
-    
-  }
+  console.log(lastName);
+ 
     
   // Address :
-  userDetails.contact.Address = document.getElementById('address').value;
-  console.log(Address);
-  for(let i = 0; i < cartArr.length; i++) {
-    
-  }
+  userDetails.contact.address = document.getElementById('address').value;
+  console.log(address);
+ 
 
   //City :
-  userDetails.contact.City = document.getElementById('city').value;
-  console.log(City);
-  for(let i = 0; i < cartArr.length; i++) {
-    
-  }
+  userDetails.contact.city = document.getElementById('city').value;
+  console.log(city);
+  
 
   //Email :
-  userDetails.contact.Email = document.getElementById('email').value;
-  console.log(Email);
-  for(let i = 0; i < cartArr.length; i++) {
-    
-  }
+  userDetails.contact.email = document.getElementById('email').value;
+  console.log(email);
+
+
+  console.log(userDetails);
+
+  // fetch post to the server :
+  const orderURL = dataURL + 'order'
+  fetch(orderURL, {
+  method: 'POST', // or 'PUT'
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(userDetails),
+})
+  .then((response) => response.json())
+  .then((data) => {
+    console.log('Success:', data);
+    // for location.href need to use query parameters to link
+    // each product to its specific id for ONE product page
+
+    location.href = './confirmation.html?orderNumber=' + data.orderId;
+  })
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+
 
 }
 
