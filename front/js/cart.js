@@ -294,8 +294,6 @@ function checkcity() {
 }
 
 
-
-
 function handleOrder(e) {
   e.preventDefault();
 
@@ -320,59 +318,6 @@ function handleOrder(e) {
   for(let i = 0; i < cartArr.length; i++) {
     userDetails.products.push(cartArr[i].id);
   }
-
-
-      // 1rst Name :
-  userDetails.contact.firstName = document.getElementById('firstName').value;
-  console.log(firstName);
-  
-  let firstNameErrorMsg = document.getElementById('firstNameErrorMsg');
-  
-  
-
-  // lastName :
-  userDetails.contact.lastName = document.getElementById('lastName').value;
-  console.log(lastName);
-  lastName.addEventListener('change', checklastName);
-  let lastNameErrorMsg = document.getElementById('lastNameErrorMsg');
-  function checklastName() {
-      if (charAlphaRegExp.test(lastName.value)) {
-        lastNameErrorMsg.innerHTML = null;
-        lastName.style.border = '2px solid green';
-          validlastName = true;
-      } else if (charAlphaRegExp.test(lastName.value) === false||lastName.value === '') {
-        lastNameErrorMsg.innerHTML = 'Please enter a valid first name';
-        lastName.style.border = '2px solid red';
-          validlastName = false;
-      }
-  }
-    
-  // Address :
-  userDetails.contact.address = document.getElementById('address').value;
-  console.log(address);
-  address.addEventListener('change', checkaddress);
-  let addressErrorMsg = document.getElementById('addressErrorMsg');
-  function checkaddress() {
-      if (charAlphaRegExp.test(address.value)) {
-          addressErrorMsg.innerHTML = null;
-          address.style.border = '2px solid green';
-          validaddress = true;
-      } else if (charAlphaRegExp.test(address.value) === false||address.value === '') {
-          addressErrorMsg.innerHTML = 'Please enter a valid first name';
-          address.style.border = '2px solid red';
-          validaddress = false;
-      }
-  }
-
-  //City :
-  userDetails.contact.city = document.getElementById('city').value;
-  console.log(city);
-  
-
-  //Email :
-  userDetails.contact.email = document.getElementById('email').value;
-  console.log(email);
-
 
   console.log(userDetails);
 
