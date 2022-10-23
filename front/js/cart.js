@@ -306,7 +306,7 @@ function checkemail() {
       email.style.border = '2px solid green';
       validemail = true;
   } else if (emailRegExp.test(email.value) === false||email.value === '') {
-      emailErrorMsg.innerHTML = 'Please enter a valid first name';
+      emailErrorMsg.innerHTML = 'Please enter a valid email';
       email.style.border = '2px solid red';
       validemail = false;
   }
@@ -341,6 +341,7 @@ function handleOrder(e) {
   // adding Id to products' Array :
   for(let i = 0; i < cartArr.length; i++) {
     userDetails.products.push(cartArr[i].id);
+    
   }
 
   console.log(userDetails);
@@ -360,14 +361,13 @@ function handleOrder(e) {
     // for location.href need to use query parameters to link
     // each product to its specific id for ONE product page
 
-    location.href = './confirmation.html?orderNumber=' + data.orderId;
+   // location.href = './confirmation.html?orderNumber=' + data.orderId;
+   console.log(data);
 
   })
   .catch((error) => {
     console.error('Error:', error);
   });
-
-
 }
 
 
