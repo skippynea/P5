@@ -7,7 +7,7 @@
 const baseURL = 'http://localhost:3000/api/products/' 
 
 // find the 'id' of the object to display with params
-let params = new URL(document.location).searchParams;
+let params = new URLSearchParams(window.location.search);
 let objectId = params.get("id");
 
 // getting the 'id' of THE only product needed from server with the URL

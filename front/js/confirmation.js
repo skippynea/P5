@@ -1,6 +1,8 @@
 // find the 'orderNumber' of the object to display with params
-let params = new URL(document.location).searchParams;
+let params = new URLSearchParams(window.location.search);
 let orderNumb = params.get("orderNumber");
 const orderId = document.getElementById('orderId');
 // displaying the order Number in the DOM
-orderNumb.innerText = `<br>${orderNumber}<br>Thank you for your order !`;
+orderId.innerText = orderNumb;
+// clear the cart
+localStorage.clear();

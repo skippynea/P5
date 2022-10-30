@@ -332,7 +332,7 @@ and sending the values to the server
 function handleOrder(e) {
   e.preventDefault();
   // checking that all the values are TRUE before sending "contact" to API server
-  if (validFirstName=== true && validLastName=== true && validAddress=== true && validEmail=== true && validCity=== true) {
+  if (validFirstName && validLastName && validAddress && validEmail && validCity) {
     // get values of input fields
     // get Id from products in the cart, and put them in an array 
     const userDetails = 
@@ -371,7 +371,7 @@ function handleOrder(e) {
       // for location.href need to use query parameters to link
       // each product to its specific id for ONE product page
 
-    // location.href = './confirmation.html?orderNumber=' + data.orderId;
+    location.href = './confirmation.html?orderNumber=' + data.orderId;
     console.log(data);
 
     })
