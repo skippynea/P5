@@ -227,9 +227,18 @@ let emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))
 let charAlphaRegExp = /^[A-Za-z -]{3,32}$/;
 let addressRegExp = /^[A-Za-z0-9 ]{7,32}$/;
 
+// let 
+let validFirstName = false ;
+let validLastName = false ;
+let validAddress = false ;
+let validCity = false ;
+let validEmail = false ;
+
+
 // Constante declaration and event listener for First Name
 const firstName = document.getElementById('firstName');
 firstName.addEventListener('input', checkFirstName);
+
 
 // function to validate that user's inputs are correct in first name's line
 function checkFirstName() {
@@ -253,11 +262,11 @@ function checklastName() {
   if (charAlphaRegExp.test(lastName.value)) {
       lastNameErrorMsg.innerHTML = null;
       lastName.style.border = '2px solid green';
-      validlastName = true;
+      validLastName = true;
   } else if (charAlphaRegExp.test(lastName.value) === false||lastName.value === '') {
       lastNameErrorMsg.innerHTML = 'Please enter a valid last name';
       lastName.style.border = '2px solid red';
-      validlastName = false;
+      validLastName = false;
   }
 }
 
@@ -270,11 +279,11 @@ function checkaddress() {
   if (addressRegExp.test(address.value)) {
       addressErrorMsg.innerHTML = null;
       address.style.border = '2px solid green';
-      validaddress = true;
+      validAddress = true;
   } else if (addressRegExp.test(address.value) === false||address.value === '') {
       addressErrorMsg.innerHTML = 'Please enter a valid address';
       address.style.border = '2px solid red';
-      validaddress = false;
+      validAddress = false;
   }
 }
 
@@ -287,11 +296,11 @@ function checkcity() {
   if (charAlphaRegExp.test(city.value)) {
       cityErrorMsg.innerHTML = null;
       city.style.border = '2px solid green';
-      validcity = true;
+      validCity = true;
   } else if (charAlphaRegExp.test(city.value) === false||city.value === '') {
       cityErrorMsg.innerHTML = 'Please enter a valid city name';
       city.style.border = '2px solid red';
-      validcity = false;
+      validCity = false;
   }
 }
 
@@ -304,11 +313,11 @@ function checkemail() {
   if (emailRegExp.test(email.value)) {
       emailErrorMsg.innerHTML = null;
       email.style.border = '2px solid green';
-      validemail = true;
+      validEmail = true;
   } else if (emailRegExp.test(email.value) === false||email.value === '') {
       emailErrorMsg.innerHTML = 'Please enter a valid email';
       email.style.border = '2px solid red';
-      validemail = false;
+      validEmail = false;
   }
 }
 
@@ -322,52 +331,62 @@ and sending the values to the server
 
 function handleOrder(e) {
   e.preventDefault();
-  
-  // get values of input fields
-      // get Id from products in the cart, and put them in an array 
-  const userDetails = 
-  {
-    contact: {
-     firstName: '',
-     lastName: '',
-     address: '',
-     city: '',
-     email: ''
-   },
-   products: []
-
-  }
-  
-  // adding Id to products' Array :
-  for(let i = 0; i < cartArr.length; i++) {
-    userDetails.products.push(cartArr[i].id);
-    
-  }
-
-  console.log(userDetails);
-
-  // fetch post to the server :
-  const orderURL = dataURL + 'order'
-  fetch(orderURL, {
-    method: 'POST', // or 'PUT'
-    headers: {
-      'Content-Type': 'application/json',
+  if (validFirstName=== true && validLastName=== true && validAddress=== true && validEmail=== true && validCity=== true) {
+    // get values of input fields
+    // get Id from products in the cart, and put them in an array 
+    const userDetails = 
+    {
+      contact: {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      address: address.value,
+      city: city.value,
+      email: email.value
     },
-    body: JSON.stringify(userDetails),
-  })
-  .then((response) => response.json())
-  .then((data) => {
-    console.log('Success:', data);
-    // for location.href need to use query parameters to link
-    // each product to its specific id for ONE product page
+    products: []
 
-   // location.href = './confirmation.html?orderNumber=' + data.orderId;
-   console.log(data);
+    }
 
-  })
-  .catch((error) => {
-    console.error('Error:', error);
-  });
+      // adding Id to products' Array :
+    for(let i = 0; i < cartArr.length; i++) {
+      userDetails.products.push(cartArr[i].id);
+      
+      }
+
+    console.log(userDetails);
+
+    // fetch post to the server :
+    const orderURL = dataURL + 'order'
+    fetch(orderURL, {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userDetails),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data);
+      // for location.href need to use query parameters to link
+      // each product to its specific id for ONE product page
+
+    // location.href = './confirmation.html?orderNumber=' + data.orderId;
+    console.log(data);
+
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+
+
+  } else {
+    console.log("Form is not valid ! Please try again. ")
+
+  }
+  
+  
+  
+
 }
 
 
