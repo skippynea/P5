@@ -331,6 +331,7 @@ and sending the values to the server
 
 function handleOrder(e) {
   e.preventDefault();
+  // checking that all the values are TRUE before sending "contact" to API server
   if (validFirstName=== true && validLastName=== true && validAddress=== true && validEmail=== true && validCity=== true) {
     // get values of input fields
     // get Id from products in the cart, and put them in an array 
@@ -379,14 +380,9 @@ function handleOrder(e) {
     });
 
 
-  } else {
-    console.log("Form is not valid ! Please try again. ")
-
-  }
-  
-  
-  
-
+  } else { 
+    // error message
+    console.log("Form's entry is not valid ! Please try again.")}
 }
 
 
